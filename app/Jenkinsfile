@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Pull the latest code from Git
+                    git 'https://github.com/tu-usuario/ci-cd-jenkins-docker.git'
+                    
+                    // Install dependencies
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests
+                sh 'npm test'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps
